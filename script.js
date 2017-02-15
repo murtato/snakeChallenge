@@ -6,7 +6,7 @@ function setup() {
   createCanvas(600, 600);
   snake = new Snake();
   frameRate(10);
-  food = createVector(random(width), random(height));
+  pickLocation;
 }
 
 function pickLocation() {
@@ -21,10 +21,13 @@ function draw(){
   snake.update();
   snake.show();
 
+  if (snake.eat(food)) {
+    pickLocation();
+
   fill(255, 0, 100);
   rect(food.x, food.y, scl, scl)
+  }
 }
-
 function keyPressed() {
   if (keyCode === UP_ARROW) {
     snake.dir(0, -1);
